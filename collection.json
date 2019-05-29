@@ -1,0 +1,762 @@
+{
+	"info": {
+		"_postman_id": "77e4af29-412d-4994-badd-71b00d0eb183",
+		"name": "CM Business Messaging API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Text",
+			"item": [
+				{
+					"name": "Sending a text message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\",\r\n                    \"type\": \"auto\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending a long text message (160+ characters)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\",\r\n                    \"type\": \"auto\"\r\n                },\r\n\t\t\t\t\"minimumnumberofmessageparts\" : 1,\r\n            \t\"maximumnumberofmessageparts\" : 8,\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending a text message with custom grouping",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"customGrouping\": \"{{custom-grouping}}\",\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WhatsApp",
+			"item": [
+				{
+					"name": "XML",
+					"item": [
+						{
+							"name": "XML - Sending WhatsApp text",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>whatsapp</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <TEXT>{{rcs-body}}</TEXT>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending WhatsApp multiple texts",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>whatsapp</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <TEXT>{{rcs-body}}</TEXT>\n                    <TEXT>{{rcs-body2}}</TEXT>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending WhatsApp media",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>whatsapp</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <MEDIA>\n                        <MEDIANAME>{{media-name}}</MEDIANAME>\n                        <MEDIAURI>{{media-url}}</MEDIAURI>\n                        <MIMETYPE>{{media-mimetype}}</MIMETYPE>\n                    </MEDIA>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending WhatsApp text + media",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>whatsapp</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <MEDIA>\n                        <MEDIANAME>{{media-name}}</MEDIANAME>\n                        <MEDIAURI>{{media-url}}</MEDIAURI>\n                        <MIMETYPE>{{media-mimetype}}</MIMETYPE>\n                    </MEDIA>\n                    <TEXT>{{rcs-body}}</TEXT>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Sending WhatsApp text",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"WhatsApp\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending WhatsApp multiple texts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        }, {\r\n                            \"text\": \"{{rcs-body2}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"WhatsApp\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending WhatsApp media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"WhatsApp\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending WhatsApp text and media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }, {\r\n                        \t\"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"WhatsApp\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Viber",
+			"item": [
+				{
+					"name": "XML",
+					"item": [
+						{
+							"name": "XML - Sending Viber text",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>viber</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <TEXT>{{rcs-body}}</TEXT>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending Viber multiple texts",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>viber</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <TEXT>{{rcs-body}}</TEXT>\n                    <TEXT>{{rcs-body2}}</TEXT>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending Viber text and button",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>viber</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <TEXT>{{rcs-body}}</TEXT>\n                </MSG>\n            </CONVERSATION>\n            <SUGGESTIONS>\n                <SUGGESTION>\n                    <ACTION>openURL</ACTION>\n                    <LABEL>{{viber-button-label}}</LABEL>\n                    <URL>{{viber-button-url}}</URL>\n                </SUGGESTION>\n            </SUGGESTIONS>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending Viber media",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>viber</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <MEDIA>\n                        <MEDIANAME>{{media-name}}</MEDIANAME>\n                        <MEDIAURI>{{media-url}}</MEDIAURI>\n                        <MIMETYPE>{{media-mimetype}}</MIMETYPE>\n                    </MEDIA>\n                </MSG>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "XML - Sending Viber text, media and button",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "0f0c9b75-ba04-40af-a01f-58bdbefabb06",
+										"disabled": true
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<MESSAGES>    \n\t<AUTHENTICATION>\n        <PRODUCTTOKEN>{{producttoken}}</PRODUCTTOKEN>\n    </AUTHENTICATION>\n    <MSG>\n        <FROM>{{sender}}</FROM>\n        <TO>\n            <NUMBER>{{recipient}}</NUMBER>\n        </TO>\n        <BODY>\n            <CONTENT>{{sms-body}}</CONTENT>\n        </BODY>\n        <ALLOWEDCHANNELS>viber</ALLOWEDCHANNELS>\n        <RICHCONTENT>\n            <CONVERSATION>\n                <MSG>\n                    <MEDIA>\n                        <MEDIANAME>{{media-name}}</MEDIANAME>\n                        <MEDIAURI>{{media-url}}</MEDIAURI>\n                        <MIMETYPE>{{media-mimetype}}</MIMETYPE>\n                    </MEDIA>\n                    <TEXT>{{rcs-body}}</TEXT>\n                </MSG>\n                <SUGGESTIONS>\n                \t<SUGGESTION>\n                    \t<ACTION>openURL</ACTION>\n                    \t<LABEL>{{viber-button-label}}</LABEL>\n                    \t<URL>{{viber-button-url}}</URL>\n                \t</SUGGESTION>\n            \t</SUGGESTIONS>\n            </CONVERSATION>\n        </RICHCONTENT>\n    </MSG>\n</MESSAGES>"
+								},
+								"url": {
+									"raw": "https://gw.cmtelecom.com/gateway.ashx",
+									"protocol": "https",
+									"host": [
+										"gw",
+										"cmtelecom",
+										"com"
+									],
+									"path": [
+										"gateway.ashx"
+									]
+								},
+								"description": "Please note that sending a message containing only media and a button will be rejected by Viber"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Sending Viber text",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending Viber multiple texts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        }, {\r\n                            \"text\": \"{{rcs-body2}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending Viber text and button",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }, {\r\n                        \t\"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending Viber media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending Viber text, media and button",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }, {\r\n                        \t\"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ],\r\n                    \"suggestions\": [\r\n\t\t\t\t\t    {\r\n\t\t\t\t\t        \"action\": \"openurl\", \r\n\t\t\t\t\t        \"label\": \"{{viber-button-label}}\", \r\n\t\t\t\t\t        \"url\": \"{{viber-button-url}}\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						},
+						"description": "Please note that sending a message containing only media and a button will be rejected by Viber"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ba6f098e-9718-4457-be71-936f073b79d6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fa882ea0-7ceb-4b83-84a3-78f88d50bd33",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

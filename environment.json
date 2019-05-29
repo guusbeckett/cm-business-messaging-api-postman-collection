@@ -1,0 +1,74 @@
+{
+	"id": "a3ee5d2b-9710-4be0-bd5b-98f1946e2649",
+	"name": "CM Gateway",
+	"values": [
+		{
+			"key": "product-token",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"enabled": true
+		},
+		{
+			"key": "recipient",
+			"value": "0031601234567",
+			"enabled": true
+		},
+		{
+			"key": "sender",
+			"value": "0031601234567",
+			"enabled": true
+		},
+		{
+			"key": "sms-body",
+			"value": "SMS test by CM.com",
+			"enabled": true
+		},
+		{
+			"key": "rcs-body",
+			"value": "RCS test by CM.com",
+			"enabled": true
+		},
+		{
+			"key": "rcs-body2",
+			"value": "RCS test by CM.com message 2",
+			"enabled": true
+		},
+		{
+			"key": "allowed-channels",
+			"value": "\"sms\",\"whatsapp\",\"viber\"",
+			"enabled": true
+		},
+		{
+			"key": "media-url",
+			"value": "https://www.cm.com/cdn/cm/cm.png",
+			"enabled": true
+		},
+		{
+			"key": "media-name",
+			"value": "cm.png",
+			"enabled": true
+		},
+		{
+			"key": "media-mimetype",
+			"value": "image/png",
+			"enabled": true
+		},
+		{
+			"key": "viber-button-label",
+			"value": "Open URL",
+			"enabled": true
+		},
+		{
+			"key": "viber-button-url",
+			"value": "https://cm.com",
+			"enabled": true
+		},
+		{
+			"key": "custom-grouping",
+			"value": "custom-grouping",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-05-29T08:11:14.365Z",
+	"_postman_exported_using": "Postman/7.1.1"
+}
