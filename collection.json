@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "77e4af29-412d-4994-badd-71b00d0eb183",
+		"_postman_id": "e6900249-e9be-4346-9747-c4f3c07f7343",
 		"name": "CM Business Messaging API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -685,7 +685,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                            \t\"mediaName\": \"{{media-name}}\",\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "https://gw.cmtelecom.com/v1.0/message",
@@ -715,7 +715,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }, {\r\n                        \t\"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ],\r\n                    \"suggestions\": [\r\n\t\t\t\t\t    {\r\n\t\t\t\t\t        \"action\": \"openurl\", \r\n\t\t\t\t\t        \"label\": \"{{viber-button-label}}\", \r\n\t\t\t\t\t        \"url\": \"{{viber-button-url}}\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                            \t\"mediaName\": \"{{media-name}}\",\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }, {\r\n                        \t\"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ],\r\n                    \"suggestions\": [\r\n\t\t\t\t\t    {\r\n\t\t\t\t\t        \"action\": \"openurl\", \r\n\t\t\t\t\t        \"label\": \"{{viber-button-label}}\", \r\n\t\t\t\t\t        \"url\": \"{{viber-button-url}}\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"Viber\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "https://gw.cmtelecom.com/v1.0/message",
@@ -731,6 +731,197 @@
 							]
 						},
 						"description": "Please note that sending a message containing only media and a button will be rejected by Viber"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Apple Business Messaging",
+			"item": [
+				{
+					"name": "Sending ABC text",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"iMessage\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending ABC multiple texts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        }, {\r\n                            \"text\": \"{{rcs-body2}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"iMessage\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending ABC media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                            \t\"mediaName\": \"{{media-name}}\",\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"iMessage\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending ABC text and media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"media\": {\r\n                                \"mediaUri\": \"{{media-url}}\",\r\n                                \"mimeType\": \"{{media-mimetype}}\"\r\n                            }\r\n                        }, {\r\n                        \t\"text\": \"{{rcs-body}}\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"WhatsApp\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending ABC list picker with images",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        },\r\n                        {\r\n\t\t\t\t\t\t    \"text\": \"{{list-picker-text}}\",\r\n\t\t\t\t\t\t    \"media\": {\r\n\t\t\t\t\t\t        \"mediaName\": \"{{list-picker-media-name}}\",\r\n\t\t\t\t\t\t        \"mediaUri\": \"{{list-picker-media-url}}\"\r\n\t\t\t\t\t\t    },\r\n\t\t\t\t\t\t    \"suggestions\": [\r\n\t\t\t\t\t\t        {\r\n\t\t\t\t\t\t            \"action\": \"Pick\",\r\n\t\t\t\t\t\t            \"label\": \"{{list-picker-item-1-label}}\",\r\n\t\t\t\t\t\t            \"media\": {\r\n\t\t\t\t\t\t                \"mediaUri\": \"{{list-picker-item-1-media-url}}\"\r\n\t\t\t\t\t\t            }\r\n\t\t\t\t\t\t        },\r\n\t\t\t\t\t\t        {\r\n\t\t\t\t\t\t            \"action\": \"Pick\",\r\n\t\t\t\t\t\t            \"label\": \"{{list-picker-item-2-label}}\",\r\n\t\t\t\t\t\t            \"media\": {\r\n\t\t\t\t\t\t                \"mediaUri\": \"{{list-picker-item-2-media-url}}\"\r\n\t\t\t\t\t\t            }\r\n\t\t\t\t\t\t        },\r\n\t\t\t\t\t\t        {\r\n\t\t\t\t\t\t            \"action\": \"Pick\",\r\n\t\t\t\t\t\t            \"label\": \"{{list-picker-item-3-label}}\",\r\n\t\t\t\t\t\t            \"media\": {\r\n\t\t\t\t\t\t                \"mediaUri\": \"{{list-picker-item-3-media-url}}\"\r\n\t\t\t\t\t\t            }\r\n\t\t\t\t\t\t        },\r\n\t\t\t\t\t\t        {\r\n\t\t\t\t\t\t            \"action\": \"Pick\",\r\n\t\t\t\t\t\t            \"label\": \"{{list-picker-item-4-label}}\",\r\n\t\t\t\t\t\t            \"media\": {\r\n\t\t\t\t\t\t                \"mediaUri\": \"{{list-picker-item-4-media-url}}\"\r\n\t\t\t\t\t\t            }\r\n\t\t\t\t\t\t        }\r\n\t\t\t\t\t\t    ]\r\n\t\t\t\t\t\t}\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"iMessage\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sending ABC date picker",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": {\r\n        \"authentication\": {\r\n            \"productToken\": \"{{product-token}}\"\r\n        },\r\n        \"msg\": [\r\n            {\r\n                \"RichContent\": {\r\n                    \"conversation\": [\r\n                        {\r\n                            \"text\": \"{{rcs-body}}\"\r\n                        },\r\n                        {\r\n\t\t\t\t\t\t    \"text\": \"{{date-picker-text}}\",\r\n\t\t\t\t\t\t    \"media\": {\r\n\t\t\t\t\t\t        \"mediaName\": \"{{date-picker-media-label}}\",\r\n\t\t\t\t\t\t        \"mediaUri\": \"{{date-picker-media-url}}\"\r\n\t\t\t\t\t\t    },\r\n\t\t\t\t\t\t    \"suggestions\": [\r\n\t\t\t\t\t\t        {\r\n\t\t\t\t\t\t            \"action\": \"Pick\",\r\n\t\t\t\t\t\t            \"label\": \"{{date-picker-label}}\",\r\n\t\t\t\t\t\t            \"calendarPicker\": {\r\n\t\t\t\t\t\t                \"options\": [\r\n\t\t\t\t\t\t                    {\r\n\t\t\t\t\t\t                        \"title\": \"{{date-picker-item-1-label}}\",\r\n\t\t\t\t\t\t                        \"startTime\": \"{{date-picker-item-1-start-time}}\",\r\n\t\t\t\t\t\t                        \"endTime\": \"{{date-picker-item-1-end-time}}\"\r\n\t\t\t\t\t\t                    },\r\n\t\t\t\t\t\t                    {\r\n\t\t\t\t\t\t                        \"title\": \"{{date-picker-item-2-label}}\",\r\n\t\t\t\t\t\t                        \"startTime\": \"{{date-picker-item-2-start-time}}\",\r\n\t\t\t\t\t\t                        \"endTime\": \"{{date-picker-item-2-end-time}}\"\r\n\t\t\t\t\t\t                    },\r\n\t\t\t\t\t\t                    {\r\n\t\t\t\t\t\t                        \"title\": \"{{date-picker-item-3-label}}\",\r\n\t\t\t\t\t\t                        \"startTime\": \"{{date-picker-item-3-start-time}}\",\r\n\t\t\t\t\t\t                        \"endTime\": \"{{date-picker-item-3-end-time}}\"\r\n\t\t\t\t\t\t                    }\r\n\t\t\t\t\t\t                ]\r\n\t\t\t\t\t\t            }\r\n\t\t\t\t\t\t        }\r\n\t\t\t\t\t\t    ]\r\n\t\t\t\t\t\t}\r\n                    ]\r\n                },\r\n                \"allowedChannels\": [\r\n                    \"iMessage\"\r\n                ],\r\n                \"body\": {\r\n                    \"content\": \"{{sms-body}}\"\r\n                },\r\n                \"from\": \"{{sender}}\",\r\n                \"to\": [\r\n                    {\r\n                        \"number\": \"{{recipient}}\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://gw.cmtelecom.com/v1.0/message",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"cmtelecom",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"message"
+							]
+						}
 					},
 					"response": []
 				}
